@@ -1,17 +1,21 @@
+import { Backdrop, CircularProgress } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AxiosProducts = () => {
   const [productList, setProductList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const productListData = () => {
+    setIsLoading(true);
     axios
       .get("https://dummyjson.com/products")
       .then(function (response) {
         // handle success
         setProductList(response.data.products);
+        setIsLoading(false);
       })
       .catch(function (error) {
         // handle error
@@ -23,7 +27,16 @@ const AxiosProducts = () => {
     productListData();
   }, []);
 
-  return (
+  return isLoading ? (
+    <>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={true}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    </>
+  ) : (
     <div className="grid grid-cols-5 gap-4">
       {productList?.map((i) => {
         return (

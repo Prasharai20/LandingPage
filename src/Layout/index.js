@@ -43,9 +43,12 @@ const Layout = () => {
         </span>
         <span className="flex gap-3">
           <Link to="/products">Products</Link>
-          <p>About Us </p>
-          <p>Contact Us</p>
-          <p>Services</p>
+          <Link to="/axios-products">AxiosProducts</Link>
+          <Link to="/home">Home</Link>
+          <Link to="/aboutusus">About Us</Link>
+          <Link to="/contact">Contact Us</Link>
+          <Link to="/service">Service</Link>
+          <Link to="/team">Team</Link>
         </span>
       </div>
       <div className="flex gap-5">

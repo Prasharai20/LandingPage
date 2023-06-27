@@ -23,16 +23,17 @@ const App = () => {
         {/* <Service /> */}
         <Routes>
           <Route path={"/dashboard"} element={<Dashboard />} />
+          <Route path={"/home"} element={<Home />} />
           <Route path={"/team"} element={<Team />} />
           <Route path={"/project"} element={<Project />} />
           <Route path={"/calender"} element={<Calender />} />
           <Route path={"/reports"} element={<Reports />} />
           <Route path={"/service"} element={<Service />} />
-          <Route path="/layout" element={<Layout />} />
+          <Route path="/" element={<Layout />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/productdetail" element={<ProductDetail />} />
           <Route path="/axios-products" element={<AxiosProducts />} />
           <Route path="/axios-products/:id" element={<ProductDetail />} />
-
           {/* <Route path="/layout-2" element={<Layout2 />} /> */}
         </Routes>
         {/* <Footer /> */}

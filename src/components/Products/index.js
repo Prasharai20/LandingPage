@@ -14,21 +14,23 @@ const Products = () => {
   useEffect(() => {
     productListData();
   }, []);
-  console.log(productList?.products);
+
   return (
-    <div>
-      {productList?.products?.map((i) => {
-        return (
-          <>
-            <p>{i.id}</p>
-            <p>{i.title}</p>
-            <p>{i.description}</p>
-            <p>{i.price}</p>
-            <p>{i.discountPercen}</p>
-          </>
-        );
-      })}
-    </div>
+    <>
+      <div>
+        {productList?.products?.map((i) => {
+          return (
+            <>
+              <p>{i.id}</p>
+              <p>{i.title}</p>
+              <p>{i.description}</p>
+              <p>{i.price}</p>
+              <p>{i.discountPercen}</p>
+            </>
+          );
+        })}
+      </div>
+    </>
   );
 };
 
