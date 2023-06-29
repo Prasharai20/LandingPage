@@ -86,12 +86,7 @@ const Layout = () => {
 
       <Carousel autoPlay showThumbs={false} showArrows={false} infiniteLoop>
         {[1, 2, 3, 4, 5].map((i) => {
-          return (
-            <img
-              src={`https://source.unsplash.com/random/700x200/?fruit/${i}`}
-              alt=""
-            />
-          );
+          return <img src={`https://picsum.photos/700/200`} alt="" />;
         })}
       </Carousel>
 

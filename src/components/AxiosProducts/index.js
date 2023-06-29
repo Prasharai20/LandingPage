@@ -1,4 +1,4 @@
-import { Backdrop, CircularProgress } from "@mui/material";
+import { Backdrop, Button, CircularProgress } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -8,13 +8,14 @@ const AxiosProducts = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [dataSearch, setDataSearch] = useState([]);
+  const [limit, setLimit] = useState(30);
 
   const navigate = useNavigate();
 
   const productListData = () => {
     setIsLoading(true);
     axios
-      .get("https://dummyjson.com/products")
+      .get(`https://dummyjson.com/products?limit=${limit}`)
       .then(function (response) {
         // handle success
         setProductList(response.data);
@@ -43,7 +44,7 @@ const AxiosProducts = () => {
 
   useEffect(() => {
     productListData();
-  }, []);
+  }, [limit]);
 
   useEffect(() => {
     document.title = productList?.limit
@@ -57,7 +58,7 @@ const AxiosProducts = () => {
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={true}
       >
-        <CircularProgress color="inherit" />
+        <CircularProgress color="primary" />
       </Backdrop>
     </>
   ) : (
@@ -106,6 +107,15 @@ const AxiosProducts = () => {
             </>
           );
         })}
+        <span className="flex justify-center p-2">
+          <Button
+            variant="contained"
+            color="inherit"
+            onClick={() => setLimit(limit + 10)}
+          >
+            See More..
+          </Button>
+        </span>
       </div>
     </>
   );
