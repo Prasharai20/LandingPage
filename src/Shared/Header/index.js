@@ -27,7 +27,11 @@ const Header = () => {
         <span className="flex gap-3">
           {/* <Link to="/products">Products</Link> */}
           <Link to="/products">Products</Link>
-          <Link to="/signup">Sign Up</Link>
+          {localStorage.getItem("token") ? (
+            <p>logined</p>
+          ) : (
+            <Link to="/signup">Sign Up</Link>
+          )}
         </span>
       </div>
       <div className="flex gap-5">

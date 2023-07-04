@@ -1,7 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -66,6 +66,7 @@ const SignUp = () => {
         <Button type="submit" variant="contained">
           Submit
         </Button>
+        <Link to="/login">Already registered</Link>
       </form>
     </div>
   );
