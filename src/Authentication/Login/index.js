@@ -1,7 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -25,7 +25,11 @@ const Login = () => {
           if (response.data[0].token) {
             localStorage.setItem("token", response.data[0].token);
             navigate("/");
+            window.location.reload();
           }
+        })
+        .catch((err) => {
+          console.log(err);
         });
     },
   });

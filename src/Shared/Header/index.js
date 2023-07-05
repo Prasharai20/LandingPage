@@ -1,11 +1,48 @@
-import { Menu } from "@mui/icons-material";
-import { Avatar, Drawer, List, ListItem, ListItemButton } from "@mui/material";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import MenuIcon from "@mui/icons-material/Menu";
+import {
+  Avatar,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  Menu,
+  MenuItem,
+} from "@mui/material";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [profile, setProfile] = useState({});
+  const open2 = Boolean(anchorEl);
 
+  const navigate = useNavigate();
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const token = localStorage.getItem("token");
+  const profileData = async () => {
+    await axios
+      .get(`https://api-eduvila.onrender.com/profile?token=${token}`)
+      .then((res) => {
+        setProfile(res?.data?.[0]);
+      });
+  };
+  useEffect(() => {
+    profile !== {} && profileData();
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    handleClose();
+    navigate("/login");
+    setProfile({});
+  };
   return (
     <>
       {" "}
@@ -28,7 +65,7 @@ const Header = () => {
           {/* <Link to="/products">Products</Link> */}
           <Link to="/products">Products</Link>
           {localStorage.getItem("token") ? (
-            <p>logined</p>
+            <Avatar src="/static/images/avatar/1.jpg" onClick={handleClick} />
           ) : (
             <Link to="/signup">Sign Up</Link>
           )}
@@ -55,7 +92,7 @@ const Header = () => {
         />
         <span className="flex gap-3 items-center">
           <Avatar src="https://mui.com/static/images/avatar" />
-          <Menu onClick={() => setOpen(true)} />
+          <MenuIcon onClick={() => setOpen(true)} />
         </span>
       </div>
       <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
@@ -65,6 +102,23 @@ const Header = () => {
           <ListItemButton>Services</ListItemButton>
         </List>
       </Drawer>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open2}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "basic-button",
+        }}
+      >
+        <ListItem className="!flex !flex-col !w-52 gap-4">
+          <Avatar />
+          <p>{profile?.name}</p>
+          <p>{profile?.email}</p>
+        </ListItem>
+        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+      </Menu>
     </>
   );
 };
