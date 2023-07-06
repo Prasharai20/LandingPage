@@ -38,7 +38,7 @@ const Header = () => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.clear();
+    localStorage.removeItem("token");
     handleClose();
     navigate("/login");
     setProfile({});
@@ -65,7 +65,12 @@ const Header = () => {
           {/* <Link to="/products">Products</Link> */}
           <Link to="/products">Products</Link>
           {localStorage.getItem("token") ? (
-            <Avatar src="/static/images/avatar/1.jpg" onClick={handleClick} />
+            <Avatar
+              alt={profile?.name}
+              src="n"
+              onClick={handleClick}
+              className="!uppercase"
+            />
           ) : (
             <Link to="/signup">Sign Up</Link>
           )}
@@ -111,12 +116,12 @@ const Header = () => {
           "aria-labelledby": "basic-button",
         }}
       >
-        <ListItem className="!flex !flex-col !w-52 gap-4">
-          <Avatar />
+        <ListItem className="!flex !flex-col !outline-none !w-52 gap-4">
+          <Avatar alt={profile?.name} src="m" className="!uppercase" />
           <p>{profile?.name}</p>
           <p>{profile?.email}</p>
         </ListItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={() => navigate("/profile")}>My account</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </>

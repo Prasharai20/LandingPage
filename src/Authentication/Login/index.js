@@ -24,8 +24,9 @@ const Login = () => {
           console.log(response.data[0].token);
           if (response.data[0].token) {
             localStorage.setItem("token", response.data[0].token);
+            localStorage.setItem("user_id", response.data[0].id);
             navigate("/");
-            window.location.reload();
+            // window.location.reload();
           }
         })
         .catch((err) => {

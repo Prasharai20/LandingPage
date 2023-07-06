@@ -1,4 +1,5 @@
 import Login from "../Authentication/Login";
+import ProfileUpdate from "../Authentication/ProfileUpdate";
 import SignUp from "../Authentication/SignUp";
 import Home from "../Pages/Home";
 import AxiosProducts from "../components/AxiosProducts";
@@ -29,5 +30,10 @@ export const routes = [
     id: 5,
     path: "/login",
     element: <Login />,
+  },
+  {
+    id: 6,
+    path: "/profile",
+    element: <ProfileUpdate />,
   },
 ];
