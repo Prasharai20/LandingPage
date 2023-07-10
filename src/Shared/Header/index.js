@@ -10,7 +10,9 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { setUserData } from "../../Redux/Actions/UserData";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -43,6 +45,15 @@ const Header = () => {
     navigate("/login");
     setProfile({});
   };
+  const dispatch = useDispatch();
+  const userData = useSelector((user) => user.state);
+
+  console.log(userData, "Redux");
+
+  useEffect(() => {
+    dispatch(setUserData("Raam"));
+  }, []);
+
   return (
     <>
       {" "}
