@@ -8,20 +8,18 @@ import { store } from "./store";
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <Routes>
-          {routes.map((route) => {
-            return (
-              <Route
-                path={route.path}
-                element={<Layout component={route.element} />}
-              />
-            );
-          })}
-        </Routes>
-      </BrowserRouter>
-    </Provider>
+    <BrowserRouter>
+      <Routes>
+        {routes.map((route) => {
+          return (
+            <Route
+              path={route.path}
+              element={<Layout component={route.element} />}
+            />
+          );
+        })}
+      </Routes>
+    </BrowserRouter>
   );
 };
 

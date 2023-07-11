@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { userData } from "./UserData";
+import { State } from "./state";
 
 export const rootReducer = combineReducers({
-  userData: userData,
+  state: State,
 });

@@ -1,7 +1,10 @@
 import { Button, TextField } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const Footer = () => {
+  const state = useSelector((state) => state.state);
+  console.log(state, "from Footer");
   return (
     <>
       <div className="lg:grid hidden lg:grid-cols-4 grid-cols-2 md:grid-cols-3 gap-3 py-5 bg-gray-400 ">

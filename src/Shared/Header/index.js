@@ -12,7 +12,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { setUserData } from "../../Redux/Actions/UserData";
+import { setState } from "../../Redux/Actions/State";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -46,12 +46,12 @@ const Header = () => {
     setProfile({});
   };
   const dispatch = useDispatch();
-  const userData = useSelector((user) => user.state);
+  const state = useSelector((state) => state.state);
 
-  console.log(userData, "Redux");
+  console.log(state, "Redux");
 
   useEffect(() => {
-    dispatch(setUserData("Raam"));
+    dispatch(setState({ name: "Prashant" }));
   }, []);
 
   return (
